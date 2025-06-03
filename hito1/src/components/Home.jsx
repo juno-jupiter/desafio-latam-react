@@ -1,10 +1,11 @@
 import Header from "./Header";
 import CardPizza from "./CardPizza";
+import CardGroup from 'react-bootstrap/CardGroup';
 
 const Home = () => {
     return <main>
         <Header />
-        <div>
+        <CardGroup className="p-5">
             <CardPizza
                 name="Napolitana"
                 price={5950}
@@ -23,7 +24,7 @@ const Home = () => {
                 ingredients={["mozzarella", "pepperoni", "orégano"]}
                 img="https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fpizza-1239077_640_com.jpg?alt=media&token=e7cde87a-08d5-4040-ac54-90f6c31eb3e3"
             />
-        </div>
+        </CardGroup>
     </main>;
 };
 
