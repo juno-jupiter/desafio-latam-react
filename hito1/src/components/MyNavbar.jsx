@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 
 const MyNavbar = () => {
     const total = 25000;
-    const token = true;
+    const token = false;
 
     return  <Navbar expand="lg" className="bg-dark">
         <Container>
