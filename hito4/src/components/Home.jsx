@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import Header from "./Header";
 import CardPizza from "./CardPizza";
-import CardGroup from 'react-bootstrap/CardGroup';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-// import { pizzas } from '../assets/js/pizzas.js';
 
 const fetchPizzas = async () => {
     const res = await fetch("http://localhost:5000/api/pizzas");
@@ -26,11 +24,11 @@ const Home = () => {
         setPizzas(data);
     }
 
-    useEffect(() => {refreshPizzas()}, [])
+    useEffect(() => {refreshPizzas()}, []);
 
     return <main>
         <Header />
-        <Row xs={2} md={3} className="g-4 align-items-center p-5">
+        <Row xs={1} md={3} className="g-4 align-items-center p-5">
             {pizzas.length > 0 ? pizzas.map(pizza => (
                 <Col key={pizza.id}>
                     <CardPizza

@@ -15,7 +15,7 @@ function App() {
 		{/* <RegisterPage /> */}
 		{/* <LoginPage /> */}
 		{/* <Cart /> */}
-		{/* <Pizza /> */}
+		{/* <Pizza id="p001"/> */}
 		<Footer />
 	</>
 };
