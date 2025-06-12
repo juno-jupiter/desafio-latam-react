@@ -1,0 +1,14 @@
+.pizza-header {
+    background-image: url("../img/Header.jpg");
+    background-position: center;
+    background-blend-mode: multiply;
+    background-color: #555555;
+}
+
+.pizza-ul {
+    list-style-type: none;
+}
+
+.cart-img {
+    width: 60%;
+}
