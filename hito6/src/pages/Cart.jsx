@@ -56,7 +56,7 @@ const Cart = () => {
 
     const removePizza = async (pizzaId) => {
 		if (isButtonLoading) return;
-		setIsButtonLoading(true);
+		setIsButtonLoading(pizzaId);
 		await waitSeconds(200);
         const newCart = cart.slice(0);
         const filteredCart = newCart.filter((pizza) => pizza?.id === pizzaId);
@@ -69,12 +69,6 @@ const Cart = () => {
         setCart((pizzaCount.count > 0) ? newCart : newCart.filter((pizza) => pizza?.id !== pizzaId));
 		setIsButtonLoading(false);
     };
-
-    const getTotal = (cartFrom) => {
-        let currTotal = 0;
-        cartFrom.map(pizza => currTotal = currTotal + (pizza.price * pizza.count));
-        return currTotal;
-    }
 
     useEffect(() => {fetchCurrentCart()}, [cart]);
 
