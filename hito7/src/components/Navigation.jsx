@@ -9,6 +9,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import { waitSeconds, fetchPizzas } from "../utils/utils";
 
 const Navigation = () => {
+    const [activeKey, setActiveKey] = useState("home");
     const [total, setTotal] = useState(0);
 	const [isButtonLoading, setIsButtonLoading] = useState(false);
     const {cart, setCart} = useContext(CartContext);
@@ -34,30 +35,38 @@ const Navigation = () => {
 		setIsButtonLoading(false);
     }
 
+    const setActiveClass = (isActive) => (isActive ? "text-white fw-bold" : "text-white");
+
     useEffect(() => {recalculateTotal()}, [cart]);
 
     return  <Navbar expand="lg" className="bg-dark">
         <Container>
-            <Navbar.Brand as={Link} to="/" className="text-white">Pizzería Mamma Mia!</Navbar.Brand>
+            <Navbar.Brand as={Link} to="/" className="text-white" onClick={() => setActiveKey("home")}>Pizzería Mamma Mia!</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" className="text-white"/>
             <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="me-auto">
-                    <Nav.Link as={Link} to="/" className="text-white">&#x1F355; Home</Nav.Link>
+                <Nav className="me-auto" activeKey={activeKey} onSelect={(eventKey) => {setActiveKey(eventKey)}}>
+                    <Nav.Link as={Link} to="/" className={setActiveClass(activeKey === "home")} eventKey="home">&#x1F355; Home</Nav.Link>
                     {
                         token ?
-                        <Nav.Link as={Link} to="/profile" className="text-white">&#x1F513; Profile</Nav.Link>
-                        : <Nav.Link as={Link} to="/login" className="text-white">&#x1F510; Login</Nav.Link>
+                        <Nav.Link as={Link} to="/profile" className={setActiveClass(activeKey === "profile")} eventKey="profile">
+                            &#x1F513; Profile
+                        </Nav.Link>
+                        : <Nav.Link as={Link} to="/login" className={setActiveClass(activeKey === "login")} eventKey="login">
+                            &#x1F510; Login
+                        </Nav.Link>
                     }
                     {
                         token ?
-                        <Nav.Link as={Link} to="/logout" className="text-white" onClick={actions.logout}>
+                        <Nav.Link as={Link} to="/logout" className={setActiveClass(activeKey === "logout")} eventKey="logout" onClick={actions.logout}>
                             &#x1F512; Logout
                         </Nav.Link>
-                        : <Nav.Link as={Link} to="/register" className="text-white">&#x1F510; Register</Nav.Link>
+                        : <Nav.Link as={Link} to="/register" className={setActiveClass(activeKey === "register")} eventKey="register">
+                            &#x1F510; Register
+                        </Nav.Link>
                     }
                 </Nav>
-                <Nav className="ml-auto">
-                    <Nav.Link as={Link} to="/cart" className="text-white">
+                <Nav className="ms-auto" activeKey={activeKey} onSelect={(eventKey) => {setActiveKey(eventKey)}}>
+                    <Nav.Link as={Link} to="/cart" className={setActiveClass(activeKey === "cart")} eventKey="cart">
                         &#x1f6d2; Total: $&nbsp;
                         {isButtonLoading ?
                             <span>
