@@ -16,7 +16,13 @@ const CardPizza = (props) => {
 		setIsButtonLoading(true);
 		await waitSeconds(200);
         const newCart = cart.slice(0);
-        newCart.push(pizzaId);
+        const filteredCart = newCart.filter((pizza) => pizza?.id === pizzaId);
+        if ((!filteredCart) || (filteredCart.length === 0)) {
+            newCart.push({id: pizzaId, count: 1})
+        } else {
+            const pizzaCount = filteredCart[0];
+            pizzaCount.count = pizzaCount.count + 1;
+        }
         setCart(newCart);
 		setIsButtonLoading(false);
     };

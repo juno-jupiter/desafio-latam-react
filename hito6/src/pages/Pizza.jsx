@@ -24,7 +24,13 @@ const Pizza = () => {
 		setIsButtonLoading(true);
 		await waitSeconds(200);
         const newCart = cart.slice(0);
-        newCart.push(pizzaId);
+        const filteredCart = newCart.filter((pizza) => pizza?.id === pizzaId);
+        if ((!filteredCart) || (filteredCart.length === 0)) {
+            newCart.push({id: pizzaId, count: 1})
+        } else {
+            const pizzaCount = filteredCart[0];
+            pizzaCount.count = pizzaCount.count + 1;
+        }
         setCart(newCart);
 		setIsButtonLoading(false);
     };
@@ -80,7 +86,7 @@ const Pizza = () => {
 										<span>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<Spinner animation="border" role="status" size="sm">
-												<span className="visually-hidden">Añadiendo...</span>
+												<span className="visually-hidden">Calculando...</span>
 											</Spinner>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										</span>

@@ -18,7 +18,7 @@ const Navigation = () => {
 		if (isButtonLoading) return;
 		setIsButtonLoading(true);
 		await waitSeconds(200);
-        let total = 0;
+        let newTotal = 0;
         let data = [];
         try {
             data = await fetchPizzas();
@@ -26,11 +26,11 @@ const Navigation = () => {
             console.log(error);
         }
         cart.forEach(element => {
-            const pizzaData = data.filter((pizza) => pizza.id === element);
+            const pizzaData = data.filter((pizza) => pizza.id === element.id);
             if ((!pizzaData) || (pizzaData.length === 0)) return;
-            total = total + pizzaData[0]?.price;
+            newTotal = newTotal + pizzaData[0]?.price * element.count;
         });
-        setTotal(total);
+        setTotal(newTotal);
 		setIsButtonLoading(false);
     }
 
