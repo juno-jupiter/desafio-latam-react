@@ -48,14 +48,10 @@ const Pizza = () => {
 						{pizza.img ? <Card.Img variant="top" src={pizza.img} alt={pizza.name} /> : <></>}
 						<Card.Body>
 							<Card.Title className="text-capitalize">{pizza.name}</Card.Title>
-							<Card.Subtitle></Card.Subtitle>
-							<Card.Text>
+							<Card.Text name="descripcion">
 								{descShow ? pizza.desc : pizza.desc.substring(0, 50) + "..."}
 								<br/>
-								(
-								{descShow ? <a href={"#"+pizza.id} onClick={()=>setDescShow(false)}>Mostrar menos</a> :
-									<a href={"#"+pizza.id} onClick={()=>setDescShow(true)}>Mostrar más</a>}
-								)
+								<a href="#descripcion" onClick={()=>setDescShow(!descShow)}>{descShow ? "(Mostrar menos)" : "(Mostrar más)"}</a>
 							</Card.Text>
 						</Card.Body>
 					</Card>
