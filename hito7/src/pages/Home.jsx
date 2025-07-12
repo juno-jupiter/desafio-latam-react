@@ -32,7 +32,7 @@ const Home = () => {
     return <main>
         <Header />
         <Container>
-            <Row xs={1} md={3} className={(isEmpty || isLoading) ? "d-none" : "g-4 align-items-center p-5"}>
+            <Row xs={1} md={3} className={(isEmpty || isLoading) ? "d-none" : "g-4 align-items-top p-5"}>
                 {pizzas.map(pizza => (
                     <Col key={pizza.id}>
                         <CardPizza

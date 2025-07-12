@@ -77,24 +77,27 @@ const Cart = () => {
     return <main className="p-3">
         <Container>
             <h1>Carrito</h1>
-            <Row><Col><h3>Detalles del pedido:</h3></Col></Row>
+            <Row><Col><h3>Detalles del pedido:</h3><hr/></Col></Row>
             {isLoading ? <Row className="align-items-center p-5">
                     <Col xs={12} className="align-self-center p-5 text-center">
                         <Spinner animation="border" role="status"><span className="visually-hidden">Cargando carro de compras...</span></Spinner>
                         <p>Cargando carro de compras...</p>
+                        <hr/>
                     </Col>
                 </Row> :
                 <>
                     {currentCart.length > 0 ? currentCart.map(pizza => (
-                        <Row key={pizza.id}>
+                        <Row key={pizza.id} className="align-items-center">
                             <Col xs={12} md={4} className="text-center">
-                                <img src={pizza.img} alt={pizza.name} className="cart-img py-3"/>
+                                <img src={pizza.img} alt={pizza.name} className="cart-img py-1"/>
                             </Col>
-                            <Col xs={12} md={3} className="text-capitalize fw-bold fs-4 text-center py-3">{pizza.name}</Col>
-                            <Col xs={6} md={3} className="fw-bold fs-4 text-center py-3">
+                            <Col xs={12} md={3} className="text-capitalize fw-bold fs-4 text-center py-1">
+                                {pizza.name}
+                            </Col>
+                            <Col xs={6} md={3} className="fw-bold fs-4 text-center py-1">
                                 ${(pizza.price * pizza.count).toLocaleString("es-CL")}
                             </Col>
-                            <Col xs={6} md={2} className="text-center py-3">
+                            <Col xs={6} md={2} className="text-center py-1">
                                 <Button variant="outline-danger" onClick={() => removePizza(pizza.id)}>
                                     &nbsp;-&nbsp;
                                 </Button>
@@ -110,8 +113,12 @@ const Cart = () => {
                                     &nbsp;+&nbsp;
                                 </Button>
                             </Col>
+                            <Col xs={12}><hr/></Col>
                         </Row>
-                    )) : <Row className="text-center"><Col className="py-3">No hay productos en el carrito.</Col></Row>}
+                    ))
+                    : <Row className="text-center align-items-center">
+                        <Col className="py-5">No hay productos en el carrito.<hr/></Col>
+                    </Row>}
                 </>}
             <Row className="py-3">
                 <Col xs={12} className="fs-1">

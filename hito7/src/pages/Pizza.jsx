@@ -63,7 +63,7 @@ const Pizza = () => {
 							<Card.Text name="descripcion">
 								{descShow ? pizza.desc : pizza.desc.substring(0, 50) + "..."}
 								<br/>
-								<a href="#descripcion" onClick={()=>setDescShow(!descShow)}>{descShow ? "(Mostrar menos)" : "(Mostrar más)"}</a>
+								<a href="#" onClick={()=>setDescShow(!descShow)}>{descShow ? "(Mostrar menos)" : "(Mostrar más)"}</a>
 							</Card.Text>
 						</Card.Body>
 					</Card>
@@ -71,15 +71,15 @@ const Pizza = () => {
 				<Col xs={12} md={6} className="px-3">
 					<Card id={"shop-"+pizza.id}>
 						<Card.Body>
-							{pizza.ingredients ? <Card.Text>
+							{pizza.ingredients ? <span>
 								<b>Ingredientes:</b>
 								<ul>
 									{pizza.ingredients.map((ingredient, index) => (
 										<li key={pizza.id + "-i" + index} className="pizza-ul text-capitalize">&#x1F355; {ingredient}</li>
 									))}
 								</ul>
-							</Card.Text> : <></>}
-							<Card.Text className="text-center">
+							</span> : <></>}
+							<div className="text-center">
 								<Card.Title>Precio: ${pizza.price.toLocaleString("es-CL")}</Card.Title>
 								<Button variant="dark" onClick={() => addPizza(id)}>
 									{isButtonLoading ?
@@ -92,7 +92,7 @@ const Pizza = () => {
 										</span>
 										: <span>Añadir &#x1f6d2;</span>}
 								</Button>
-							</Card.Text>
+							</div>
 						</Card.Body>
 					</Card>
 				</Col>

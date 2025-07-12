@@ -36,16 +36,16 @@ const CardPizza = (props) => {
                 <br/>
                 <a href={"#"+props.id} onClick={()=>setDescShow(!descShow)}>{descShow ? "(Mostrar menos)" : "(Mostrar más)"}</a>
             </Card.Text>
-            <Card.Text className={props.ingredients.length > 0 ? "" : "d-none"}>
+            <div className={props.ingredients.length > 0 ? "" : "d-none"}>
                 <b>Ingredientes:</b>
                 <ul>
                     {props.ingredients.map((ingredient, index) => (
                         <li key={props.id + "-i" + index} className="pizza-ul text-capitalize">&#x1F355; {ingredient}</li>
                     ))}
                 </ul>
-            </Card.Text>
+            </div>
             <Card.Text className="text-center">
-                <Card.Title>Precio: ${props.price.toLocaleString("es-CL")}</Card.Title>
+                <span className="fs-6 fw-bold">Precio: ${props.price.toLocaleString("es-CL")}</span><br/><br/>
                 <Button variant="outline-dark" as={Link} to={`/pizza/${props.id}`}>Ver Más &#x1F440;</Button>
                 <Button variant="dark" onClick={() => addPizza(props.id)}>
                     {isButtonLoading ?
